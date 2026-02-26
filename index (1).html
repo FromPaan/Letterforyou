@@ -21,8 +21,8 @@ iframe{
 
 <body>
 
-<!-- Lagu background -->
-<audio autoplay loop id="music">
+<!-- Lagu background (muted start trick) -->
+<audio id="music" autoplay loop muted>
   <source src="song.mp3" type="audio/mpeg">
 </audio>
 
@@ -30,9 +30,11 @@ iframe{
 <iframe src="https://toyou-letter.my.canva.site/"></iframe>
 
 <script>
-// Fix autoplay (browser kadang block)
-document.addEventListener("click", function(){
-  document.getElementById("music").play();
+// Auto unmute after user interaction
+window.addEventListener("click", () => {
+  const music = document.getElementById("music");
+  music.muted = false;
+  music.play();
 });
 </script>
 
